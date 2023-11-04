@@ -89,21 +89,22 @@ func main() {
 	var crates2 = [][]string{{}, {}, {}, {}, {}, {}, {}, {}, {}}
 
 	//reverse array
-	fmt.Println("before  crate ")
-	fmt.Println(s2)
+	// since go perform inplace there is no need to revert the array again
 	//for i2, j2 := 0, len(s2)-1; i2 < j2; i2, j2 = i2+1, j2-1 {
 	//	s2[i2], s2[j2] = s2[j2], s2[i2]
 	//}
 
-	fmt.Println("before  crate ")
-	fmt.Println(s2)
 	for _, v2 := range s2 {
 		for i2, val2 := range v2 {
+			//the first 3 characters is our crate
 			if i2%4 < 3 {
 				crate2 += string(val2)
 			}
 
+			// the 4 indicate split between crates, so we save our crate into the right index and reset the variable for the next crate value.
+
 			if i2%4 == 3 {
+				//check for empty crates
 				if crate2 != "   " {
 					crates2[crate_index2] = append(crates2[crate_index2], crate2)
 				}
@@ -112,6 +113,7 @@ func main() {
 
 			}
 		}
+		//since there is no last space the last crate should be appended outside the loop
 		if crate2 != "   " {
 			crates2[crate_index2] = append(crates2[crate_index2], crate2)
 		}
@@ -119,18 +121,16 @@ func main() {
 		crate_index2 = 0
 
 	}
-	//fmt.Println(crates)
-	fmt.Println("before  crate ")
+	fmt.Println("before instructions  crate ")
 	for _, cr2 := range crates2 {
-
 		fmt.Println(cr2)
 	}
 
 	for _, in2 := range instructions2 {
-		//in := instructions[0]
 		ins_split := strings.Split(in2, " ")
 		amount, _ := strconv.Atoi(ins_split[1])
 		from, _ := strconv.Atoi(ins_split[3])
+		//since the crates goes from 1 to 9 we need to sub 1 to turn them into indexes
 		from--
 		to, _ := strconv.Atoi(ins_split[5])
 		to--
@@ -139,7 +139,6 @@ func main() {
 		crates2[from] = crates2[from][:len(crates2[from])-amount]
 	}
 	fmt.Println("Final crate ")
-
 	var result = ""
 	for _, cr2 := range crates2 {
 
