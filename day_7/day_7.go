@@ -64,7 +64,6 @@ func decode_input(in string) {
 		if input_arr[1] == "cd" {
 			//if is cd change the current_dir to the folder specified, and add the folder to the folder array if it doesn exist
 			current_dir = validate_and_change_dir(input_arr[2])
-
 		}
 	} else if input_arr[0] == "dir" {
 		create_new_dir(input_arr[1], current_dir)
